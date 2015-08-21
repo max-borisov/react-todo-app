@@ -1,4 +1,6 @@
 var React = require('react');
+var dispatcher = require('../../dispatcher');
+var actions = require('../../actions');
 
 var Task = React.createClass({
 
@@ -10,7 +12,8 @@ var Task = React.createClass({
     event.preventDefault();
 
     if (confirm('Are you sure ?')) {
-      TodoAction.deleteTask(this.getTask());
+      dispatcher.emit(actions.DELETE_TASK, this.getTask());
+      // TodoAction.deleteTask(this.getTask());
     }
   },
 

@@ -1,6 +1,7 @@
 var React = require('react');
 var AppHeader = require('./components/app/header');
 var AppContent = require('./components/app/content');
+var TodoStore = require('./todoStore');
 
 var TodoApp = React.createClass({
 
@@ -13,7 +14,7 @@ var TodoApp = React.createClass({
   },
 
   componentDidMount: function() {
-    TodoStore.onChange = this.onChange;
+    TodoStore.addChangeListener(this.onChange)
   },
 
   onChange: function() {

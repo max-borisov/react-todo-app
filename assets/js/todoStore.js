@@ -1,3 +1,6 @@
+var dispatcher = require('./dispatcher');
+var actions = require('./actions');
+
 var todo = [
   {
     id: 1,
@@ -47,7 +50,16 @@ var TodoStore = {
     return this._state;
   },
 
-  onChange: function() {},
+  changeListeners: [],
+
+  addChangeListener(cb) {
+    this.changeListeners.push(cb);
+  },
+
+  onChange: function() {
+
+    this.changeListeners.forEach((cb) => cb());
+  },
 
   deleteProject: function(project) {
     var todo = this.getState().todo.filter(function(item) {
@@ -58,8 +70,8 @@ var TodoStore = {
   },
 
 
-  deleteTask: function(task) {
-    var todo = this.getState().todo.forEach()
+  deleteTask: function({ id }) {
+    todo = this.getState().todo.map((t) => t.tasks = t.tasks.filter((td) => td.id !== id));
 
     // var todo = this.getState().todo.filter(function(item) {
     //   var flag = true;
@@ -72,7 +84,11 @@ var TodoStore = {
 
     //   return flag;
     // });
-    this._state.todo = todo;
+
     this.onChange();
   }
 };
+
+dispatcher.listen(actions.DELETE_TASK, TodoStore.deleteTask.bind(TodoStore));
+
+export default TodoStore;

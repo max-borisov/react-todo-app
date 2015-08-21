@@ -7,3 +7,5 @@ var TodoAction = {
     TodoStore.deleteTask(task);
   }
 };
+
+export default TodoAction;
