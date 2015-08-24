@@ -1,0 +1,17 @@
+{
+  "name": "rext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "watchify -d -e assets/js/app.js -t babelify --outfile dist/js/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.2.0",
+    "browserify": "^11.0.1",
+    "react": "^0.13.3",
+    "watchify": "^3.3.1"
+  }
+}
